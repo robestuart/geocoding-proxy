@@ -5,6 +5,8 @@ import geocode as gc
 import threading
 import urllib2
 import json
+import time
+
 
 
 class GeoServiceHTTPReqHandler(BaseHTTPRequestHandler):
@@ -58,7 +60,9 @@ class GeoCodeServer:
         """
         cls._running = False
         print "attempting to stop server..."
+
         try:
+            time.sleep(1)
             urllib2.urlopen("http://127.0.0.1:8000/geocode/json?address=South%Pole")
         except urllib2.URLError:
             pass
